@@ -1,0 +1,47 @@
+streamlit
+torch
+torchvision
+numpy
+opencv-python
+Pillow
+import streamlit as st
+from PIL import Image
+
+st.set_page_config(
+    page_title="ScalpAI Pro",
+    layout="centered"
+)
+
+st.markdown("""
+<style>
+body {
+    background-color: #0e1117;
+    color: white;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.title("🧠 ScalpAI Pro")
+st.caption("IA de Scalping • Uso educacional")
+
+uploaded = st.file_uploader(
+    "📷 Envie o print do gráfico",
+    type=["png", "jpg", "jpeg"]
+)
+
+if uploaded:
+    img = Image.open(uploaded).convert("RGB")
+    st.image(img, use_column_width=True)
+
+    # SIMULAÇÃO (substituir pela IA real depois)
+    preds = {
+        "1m": [("UP", 0.78)],
+        "5m": [("UP", 0.66)],
+        "15m": [("NEUTRAL", 0.55)]
+    }
+
+    score = 80
+
+    st.subheader("🚦 DECISÃO DA IA")
+    st.success("📈 COMPRA AUTORIZADA")
+    st.metric("Score IA", score)
